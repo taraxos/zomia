@@ -88,7 +88,7 @@ export default defineComponent({
 	}
 
 	> img {
-		object-fit: contain;
+		object-fit: cover;
 	}
 
 	&.cover {
