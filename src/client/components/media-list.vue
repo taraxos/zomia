@@ -92,7 +92,7 @@ export default defineComponent({
 		&:before {
 			content: '';
 			display: block;
-			padding-top: 56.25% // 16:9;
+			padding-top: 140.625% // 45:32;
 		}
 
 		> div {
