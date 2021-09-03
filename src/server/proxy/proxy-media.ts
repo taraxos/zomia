@@ -22,7 +22,7 @@ export async function proxyMedia(ctx: Koa.Context) {
 		let image: IImage;
 
 		if ('static' in ctx.query && ['image/png', 'image/gif', 'image/apng', 'image/vnd.mozilla.apng', 'image/webp'].includes(mime)) {
-			image = await convertToPng(path, 498, 280);
+			image = await convertToPng(path, 512, 720);
 		} else if ('preview' in ctx.query && ['image/jpeg', 'image/png', 'image/gif', 'image/apng', 'image/vnd.mozilla.apng'].includes(mime)) {
 			image = await convertToJpeg(path, 200, 200);
 		} else {
