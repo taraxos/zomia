@@ -63,9 +63,9 @@ export default async function(ctx: Koa.Context) {
 				const convertFile = async () => {
 					if (isThumbnail) {
 						if (['image/jpeg', 'image/webp'].includes(mime)) {
-							return await convertToJpeg(path, 720, 512);
+							return await convertToJpeg(path, 512, 720);
 						} else if (['image/png'].includes(mime)) {
-							return await convertToPngOrJpeg(path, 720, 512);
+							return await convertToPngOrJpeg(path, 512, 720);
 						} else if (mime.startsWith('video/')) {
 							return await GenerateVideoThumbnail(path);
 						}
