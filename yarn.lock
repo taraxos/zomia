@@ -447,10 +447,10 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/bull@3.15.3":
-  version "3.15.3"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.15.3.tgz#c55a7644465547bd77d70a1c80f10aadf58d5dd5"
-  integrity sha512-JL+c8TmfaZVZn5H+tzgt867eHfm408HV1/wS5+sjQnJ3ULxpw5/GwLl6sX6Gmcrte4VTFm+Jz8U0Wy4QVgC4dg==
+"@types/bull@3.15.4":
+  version "3.15.4"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.15.4.tgz#71390e83b6aa41a9106535240ad226c5239615f1"
+  integrity sha512-vsw4kqsI/SLocfcgTUY2b8POTBUw9AwmTaehvSVnEAbcgJHsPheFMP8WKDFDk2I+aNTLRQX5iP21dPwz3CGLVA==
   dependencies:
     "@types/ioredis" "*"
 
@@ -655,10 +655,10 @@
   resolved "https://registry.yarnpkg.com/@types/is-url/-/is-url-1.2.30.tgz#85567e8bee4fee69202bc3448f9fb34b0d56c50a"
   integrity sha512-AnlNFwjzC8XLda5VjRl4ItSd8qp8pSNowvsut0WwQyBWHpOxjxRJm8iO6uETWqEyLdYdb9/1j+Qd9gQ4l5I4fw==
 
-"@types/js-yaml@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/js-yaml/-/js-yaml-4.0.2.tgz#4117a7a378593a218e9d6f0ef44ce6d5d9edf7fa"
-  integrity sha512-KbeHS/Y4R+k+5sWXEYzAZKuB1yQlZtEghuhRxrVRLaqhtoG5+26JwQsa4HyS3AWX8v1Uwukma5HheduUDskasA==
+"@types/js-yaml@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/js-yaml/-/js-yaml-4.0.3.tgz#9f33cd6fbf0d5ec575dc8c8fc69c7fec1b4eb200"
+  integrity sha512-5t9BhoORasuF5uCPr+d5/hdB++zRFUTMIZOzbNkr+jZh3yQht4HYbRDyj9fY8n2TZT30iW9huzav73x4NikqWg==
 
 "@types/jsdom@16.2.13":
   version "16.2.13"
