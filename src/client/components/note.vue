@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	<article class="article" @contextmenu.stop="onContextmenu">
-		<MkAvatar class="avatar" :user="appearNote.user"/>
+		<div style="height: 100%; left: 80px; position: absolute;"><MkAvatar class="avatar" :user="appearNote.user"/></div>
 		<div class="main">
 			<XNoteHeader class="header" :note="appearNote" :mini="true"/>
 			<MkInstanceTicker v-if="showTicker" class="ticker" :instance="appearNote.user.instance"/>
@@ -877,8 +877,6 @@ export default defineComponent({
 .tkcbzcuz {
 	position: relative;
 	transition: box-shadow 0.1s ease;
-	overflow: clip;
-	contain: content;
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -1003,14 +1001,14 @@ export default defineComponent({
 
 	> .article {
 		display: flex;
-		padding: 28px 32px 18px;
+		padding: 28px 0 18px;
 
 		> .avatar {
 			flex-shrink: 0;
 			display: block;
-			margin: 0 14px 8px 0;
-			width: 58px;
-			height: 58px;
+			margin: 0;
+			width: 64px;
+			height: 64px;
 			position: sticky;
 			top: calc(22px + var(--stickyTop, 0px));
 			left: 0;
