@@ -1003,15 +1003,15 @@ export default defineComponent({
 
 	> .article {
 		display: flex;
-		padding: 28px 32px 18px;
+		padding: 28px 0 18px;
 
 		> .avatar {
 			flex-shrink: 0;
 			display: block;
-			margin: 0 14px 8px 0;
-			width: 58px;
-			height: 58px;
-			position: sticky;
+			margin: 0 0 0 -80px;
+			width: 64px;
+			height: 64px;
+			position: absolute;
 			top: calc(22px + var(--stickyTop, 0px));
 			left: 0;
 		}
