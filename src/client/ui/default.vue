@@ -295,7 +295,6 @@ export default defineComponent({
 			border-left: solid 1px var(--divider);
 			border-right: solid 1px var(--divider);
 			border-radius: 0;
-			overflow: clip;
 			--margin: 12px;
 
 			> .header {
