@@ -102,7 +102,7 @@ export default defineComponent({
 			bottom: 0;
 			left: 0;
 			display: grid;
-			grid-gap: 0;
+			grid-gap: 4px;
 
 			> * {
 				overflow: hidden;
