@@ -1,7 +1,7 @@
 <template>
 <div class="mk-media-list">
 	<XBanner v-for="media in mediaList.filter(media => !previewable(media))" :media="media" :key="media.id"/>
-	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="gird-container" ref="gridOuter">
+	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="grid-container" ref="gridOuter">
 		<div :data-count="mediaList.filter(media => previewable(media)).length" :style="gridInnerStyle">
 			<template v-for="media in mediaList">
 				<XVideo :video="media" :key="media.id" v-if="media.type.startsWith('video')"/>
@@ -63,13 +63,13 @@ export default defineComponent({
 				this.sizeWaiting = false;
 
 				if (this.$refs.gridOuter) {
-					let height = 287;
+					let height = 720;
 					const parent = this.$parent.$el;
 
 					if (this.$refs.gridOuter.clientHeight) {
 						height = this.$refs.gridOuter.clientHeight;
 					} else if (parent) {
-						height = parent.getBoundingClientRect().width * 9 / 16;
+						height = parent.getBoundingClientRect().width * 45 / 32;
 					}
 
 					this.gridInnerStyle = { height: `${height}px` };
@@ -84,7 +84,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .mk-media-list {
-	> .gird-container {
+	> .grid-container {
 		position: relative;
 		width: 100%;
 		margin-top: 4px;
@@ -102,11 +102,11 @@ export default defineComponent({
 			bottom: 0;
 			left: 0;
 			display: grid;
-			grid-gap: 4px;
+			grid-gap: 0;
 
 			> * {
 				overflow: hidden;
-				border-radius: 6px;
+				border-radius: 0;
 			}
 
 			&[data-count="1"] {
@@ -114,16 +114,23 @@ export default defineComponent({
 			}
 
 			&[data-count="2"] {
-				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr;
+				height: 360px;
+				grid-template-columns: 1fr;
+				grid-template-rows: 1fr 1fr;
 			}
 
 			&[data-count="3"] {
-				grid-template-columns: 1fr 0.5fr;
+				grid-template-columns: 1fr 1fr;
 				grid-template-rows: 1fr 1fr;
 
 				> *:nth-child(1) {
-					grid-row: 1 / 3;
+					grid-row: 1 / 2;
+					grid-column: 1 / 3;
+				}
+
+				> *:nth-child(2) {
+					grid-row: 2 / 3;
+					grid-column: 1 / 2;
 				}
 
 				> *:nth-child(3) {
@@ -135,26 +142,57 @@ export default defineComponent({
 			&[data-count="4"] {
 				grid-template-columns: 1fr 1fr;
 				grid-template-rows: 1fr 1fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 2;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 2 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 1 / 2;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 2 / 3;
+					grid-row: 2 / 3;
+				}
 			}
 
-			> *:nth-child(1) {
-				grid-column: 1 / 2;
-				grid-row: 1 / 2;
-			}
+			&[data-count="5"] {
+				height: 1440px;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr 2fr 1fr;
 
-			> *:nth-child(2) {
-				grid-column: 2 / 3;
-				grid-row: 1 / 2;
-			}
+				> *:nth-child(1) {
+					grid-column: 1 / 2;
+					grid-row: 1 / 2;
+				}
 
-			> *:nth-child(3) {
-				grid-column: 1 / 2;
-				grid-row: 2 / 3;
-			}
+				> *:nth-child(2) {
+					grid-column: 2 / 3;
+					grid-row: 1 / 2;
+				}
 
-			> *:nth-child(4) {
-				grid-column: 2 / 3;
-				grid-row: 2 / 3;
+				> *:nth-child(3) {
+					grid-column: 1 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 2;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 2 / 3;
+					grid-row: 3 / 4;
+				}
 			}
 		}
 	}
