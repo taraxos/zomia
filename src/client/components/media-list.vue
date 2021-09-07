@@ -69,7 +69,8 @@ export default defineComponent({
 					if (this.$refs.gridOuter.clientHeight) {
 						height = this.$refs.gridOuter.clientHeight;
 					} else if (parent) {
-						height = parent.getBoundingClientRect().width * 45 / 32;
+						scale = mediaList.filter(media => previewable(media)).length
+						height = parent.getBoundingClientRect().width * 45 / 64 * (scale + ((scale + 1) % 3) - 1);
 					}
 
 					this.gridInnerStyle = { height: `${height}px` };
@@ -114,23 +115,22 @@ export default defineComponent({
 			}
 
 			&[data-count="2"] {
-				height: 360px;
-				grid-template-columns: 1fr;
-				grid-template-rows: 1fr 1fr;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr;
 			}
 
 			&[data-count="3"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr 1fr;
+				grid-template-rows: 2fr 1fr;
 
 				> *:nth-child(1) {
-					grid-row: 1 / 2;
 					grid-column: 1 / 3;
+					grid-row: 1 / 2;
 				}
 
 				> *:nth-child(2) {
-					grid-row: 2 / 3;
 					grid-column: 1 / 2;
+					grid-row: 2 / 3;
 				}
 
 				> *:nth-child(3) {
@@ -141,31 +141,30 @@ export default defineComponent({
 
 			&[data-count="4"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr 1fr;
+				grid-template-rows: 2fr 1fr 2fr;
 
 				> *:nth-child(1) {
-					grid-column: 1 / 2;
+					grid-column: 1 / 3;
 					grid-row: 1 / 2;
 				}
 
 				> *:nth-child(2) {
-					grid-column: 2 / 3;
-					grid-row: 1 / 2;
-				}
-
-				> *:nth-child(3) {
 					grid-column: 1 / 2;
 					grid-row: 2 / 3;
 				}
 
-				> *:nth-child(4) {
+				> *:nth-child(3) {
 					grid-column: 2 / 3;
 					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 3;
+					grid-row: 3 / 4;
 				}
 			}
 
 			&[data-count="5"] {
-				height: 1440px;
 				grid-template-columns: 1fr 1fr;
 				grid-template-rows: 1fr 2fr 1fr;
 
@@ -192,6 +191,356 @@ export default defineComponent({
 				> *:nth-child(5) {
 					grid-column: 2 / 3;
 					grid-row: 3 / 4;
+				}
+			}
+
+			&[data-count="6"] {
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 2fr 1fr 1fr 2fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 1 / 2;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 2 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 2;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 2 / 3;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(6) {
+					grid-column: 1 / 3;
+					grid-row: 4 / 5;
+				}
+			}
+
+			&[data-count="7"] {
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 2fr 1fr 2fr 1fr 2fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 1 / 2;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 2 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 3;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 1 / 2;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(6) {
+					grid-column: 2 / 3;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(7) {
+					grid-column: 1 / 3;
+					grid-row: 5 / 6;
+				}
+			}
+
+			&[data-count="8"] {
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr 2fr 1fr 2fr 1fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 2;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 2 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 1 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 2;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 2 / 3;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(6) {
+					grid-column: 1 / 3;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(7) {
+					grid-column: 1 / 2;
+					grid-row: 5 / 6;
+				}
+
+				> *:nth-child(8) {
+					grid-column: 2 / 3;
+					grid-row: 5 / 6;
+				}
+			}
+
+			&[data-count="9"] {
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 2fr 1fr 2fr 1fr 2fr 1fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 1 / 2;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 2 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 3;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 1 / 2;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(6) {
+					grid-column: 2 / 3;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(7) {
+					grid-column: 1 / 3;
+					grid-row: 5 / 6;
+				}
+
+				> *:nth-child(8) {
+					grid-column: 1 / 2;
+					grid-row: 6 / 7;
+				}
+
+				> *:nth-child(9) {
+					grid-column: 2 / 3;
+					grid-row: 6 / 7;
+				}
+			}
+
+			&[data-count="10"] {
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 2fr 1fr 2fr 1fr 2fr 1fr 2fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 1 / 2;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 2 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 3;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 1 / 2;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(6) {
+					grid-column: 2 / 3;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(7) {
+					grid-column: 1 / 3;
+					grid-row: 5 / 6;
+				}
+
+				> *:nth-child(8) {
+					grid-column: 1 / 2;
+					grid-row: 6 / 7;
+				}
+
+				> *:nth-child(9) {
+					grid-column: 2 / 3;
+					grid-row: 6 / 7;
+				}
+
+				> *:nth-child(10) {
+					grid-column: 1 / 3;
+					grid-row: 7 / 8;
+				}
+			}
+
+			&[data-count="11"] {
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr 2fr 1fr 2fr 1fr 2fr 1fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 2;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 2 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 1 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 2;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 2 / 3;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(6) {
+					grid-column: 1 / 3;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(7) {
+					grid-column: 1 / 2;
+					grid-row: 5 / 6;
+				}
+
+				> *:nth-child(8) {
+					grid-column: 2 / 3;
+					grid-row: 5 / 6;
+				}
+
+				> *:nth-child(9) {
+					grid-column: 1 / 3;
+					grid-row: 6 / 7;
+				}
+
+				> *:nth-child(10) {
+					grid-column: 1 / 2;
+					grid-row: 7 / 8;
+				}
+
+				> *:nth-child(11) {
+					grid-column: 2 / 3;
+					grid-row: 7 / 8;
+				}
+			}
+
+			&[data-count="12"] {
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 2fr 1fr 2fr 1fr 1fr 2fr 1fr 2fr;
+
+				> *:nth-child(1) {
+					grid-column: 1 / 3;
+					grid-row: 1 / 2;
+				}
+
+				> *:nth-child(2) {
+					grid-column: 1 / 2;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(3) {
+					grid-column: 2 / 3;
+					grid-row: 2 / 3;
+				}
+
+				> *:nth-child(4) {
+					grid-column: 1 / 3;
+					grid-row: 3 / 4;
+				}
+
+				> *:nth-child(5) {
+					grid-column: 1 / 2;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(6) {
+					grid-column: 2 / 3;
+					grid-row: 4 / 5;
+				}
+
+				> *:nth-child(7) {
+					grid-column: 1 / 2;
+					grid-row: 5 / 6;
+				}
+
+				> *:nth-child(8) {
+					grid-column: 2 / 3;
+					grid-row: 5 / 6;
+				}
+
+				> *:nth-child(9) {
+					grid-column: 1 / 3;
+					grid-row: 6 / 7;
+				}
+
+				> *:nth-child(10) {
+					grid-column: 1 / 2;
+					grid-row: 7 / 8;
+				}
+
+				> *:nth-child(11) {
+					grid-column: 2 / 3;
+					grid-row: 7 / 8;
+				}
+
+				> *:nth-child(12) {
+					grid-column: 1 / 3;
+					grid-row: 8 / 9;
 				}
 			}
 		}
