@@ -291,9 +291,9 @@ export default defineComponent({
 			min-width: 0;
 			width: 512px;
 			margin: 0 16px 0 0;
-			background: var(--panel);
-			border-left: solid 1px var(--divider);
-			border-right: solid 1px var(--divider);
+			background: rgba(255, 255, 255, 0);
+			border-left: solid 0 var(--divider);
+			border-right: solid 0 var(--divider);
 			border-radius: 0;
 			--margin: 12px;
 
