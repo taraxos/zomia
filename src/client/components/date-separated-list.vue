@@ -143,7 +143,7 @@ export default defineComponent({
 		text-align: center;
 
 		> .date {
-			display: inline-block;
+			display: none;
 			position: relative;
 			margin: 0;
 			padding: 0 16px;
@@ -174,13 +174,14 @@ export default defineComponent({
 
 	&.noGap {
 		> * {
-			margin: 0 !important;
+			background: var(--panel);
+			margin: 20px 0 0 0 !important;
 			border: none;
-			border-radius: 0;
+			border-radius: var(--radius);
 			box-shadow: none;
 
 			&:not(:last-child) {
-				border-bottom: solid 0.5px var(--divider);
+				border-bottom: solid 0 var(--divider);
 			}
 		}
 	}
