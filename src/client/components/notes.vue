@@ -112,7 +112,7 @@ export default defineComponent({
 .giivymft {
 	&.noGap {
 		> .notes {
-			background: var(--panel);
+			background: rgba(255, 255, 255, 0);
 		}
 	}
 
