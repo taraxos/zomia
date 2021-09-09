@@ -2,6 +2,16 @@
 <div class="mk-app" :class="{ wallpaper, isMobile }">
 	<XHeaderMenu v-if="showMenuOnTop"/>
 
+	<div class="columns" :class="{ fullView, withGlobalHeader: showMenuOnTop }">
+		<template v-if="!isMobile">
+			<div class="sidebar" v-if="!showMenuOnTop">
+				<XSidebar/>
+			</div>
+			<div class="widgets left" ref="widgetsLeft" v-else>
+				<XWidgets @mounted="attachSticky('widgetsLeft')" :place="'left'"/>
+			</div>
+		</template>
+
 		<main class="main" @contextmenu.stop="onContextmenu">
 			<header class="header" @click="onHeaderClick">
 				<XHeader :info="pageInfo" :back-button="true" @back="back()"/>
@@ -16,16 +26,6 @@
 				</router-view>
 			</div>
 		</main>
-
-	<div class="columns" :class="{ fullView, withGlobalHeader: showMenuOnTop }">
-		<template v-if="!isMobile">
-			<div class="sidebar" v-if="!showMenuOnTop">
-				<XSidebar/>
-			</div>
-			<div class="widgets left" ref="widgetsLeft" v-else>
-				<XWidgets @mounted="attachSticky('widgetsLeft')" :place="'left'"/>
-			</div>
-		</template>
 
 		<div v-if="isDesktop" class="widgets right" ref="widgetsRight">
 			<XWidgets @mounted="attachSticky('widgetsRight')" :place="null"/>
@@ -337,6 +337,7 @@ export default defineComponent({
 		}
 
 		> .sidebar {
+			margin-right: 80px;
 			margin-top: 16px;
 		}
 
