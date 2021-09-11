@@ -36,7 +36,9 @@
 		</div>
 	</div>
 	<article class="article" @contextmenu.stop="onContextmenu">
-		<div style="height: 100%; left: -80px; position: absolute;"><MkAvatar class="avatar" :user="appearNote.user"/></div>
+		<div style="height: 100%; left: -80px; position: absolute;">
+			<MkAvatar class="avatar" :user="appearNote.user"/>
+		</div>
 		<div class="main">
 			<XNoteHeader class="header" :note="appearNote" :mini="true"/>
 			<MkInstanceTicker v-if="showTicker" class="ticker" :instance="appearNote.user.instance"/>
@@ -1010,7 +1012,7 @@ export default defineComponent({
 			width: 64px;
 			height: 64px;
 			position: sticky;
-			top: calc(22px + var(--stickyTop, 0px));
+			top: calc(0px + var(--stickyTop, 0px));
 			left: 0;
 		}
 
