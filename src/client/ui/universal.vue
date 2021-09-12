@@ -109,9 +109,6 @@ export default defineComponent({
 
 		if (this.$store.state.widgets.length === 0) {
 			this.$store.set('widgets', [{
-				name: 'calendar',
-				id: 'a', place: 'right', data: {}
-			}, {
 				name: 'notifications',
 				id: 'b', place: 'right', data: {}
 			}, {
