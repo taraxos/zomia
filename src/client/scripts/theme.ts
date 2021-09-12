@@ -12,7 +12,7 @@ export type Theme = {
 export const lightTheme: Theme = require('@client/themes/_light.json5');
 export const darkTheme: Theme = require('@client/themes/_dark.json5');
 
-export const themeProps = Object.keys(lightTheme.props).filter(key => !key.startsWith('X'));
+export const themeProps = Object.keys(darkTheme.props).filter(key => !key.startsWith('X'));
 
 export const builtinThemes = [
 	require('@client/themes/l-light.json5'),
