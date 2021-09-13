@@ -1003,7 +1003,7 @@ export default defineComponent({
 
 	> .article {
 		display: flex;
-		padding: 28px 0 18px;
+		padding: 0;
 
 		> div > .avatar {
 			flex-shrink: 0;
@@ -1066,6 +1066,7 @@ export default defineComponent({
 					}
 
 					> .text {
+						margin: 0 32px;
 						overflow-wrap: break-word;
 
 						> .reply {
@@ -1114,13 +1115,9 @@ export default defineComponent({
 
 			> .footer {
 				> .button {
-					margin: 0;
+					margin-left: 24px;
 					padding: 8px;
 					opacity: 0.7;
-
-					&:not(:last-child) {
-						margin-right: 28px;
-					}
 
 					&:hover {
 						color: var(--fgHighlighted);

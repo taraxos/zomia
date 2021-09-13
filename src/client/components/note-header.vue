@@ -52,11 +52,12 @@ export default defineComponent({
 .kkwtjztg {
 	display: flex;
 	align-items: baseline;
+	padding: 8px 0;
 	white-space: nowrap;
 
 	> .name {
 		display: block;
-		margin: 0 .5em 0 0;
+		margin: 0 .5em 0 32px;
 		padding: 0;
 		overflow: hidden;
 		font-size: 1em;
@@ -93,6 +94,7 @@ export default defineComponent({
 
 	> .info {
 		margin-left: auto;
+		margin-right: 32px;
 		font-size: 0.9em;
 
 		> .mobile {
