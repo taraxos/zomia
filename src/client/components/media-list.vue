@@ -69,11 +69,11 @@ export default defineComponent({
 					if (this.$refs.gridOuter.clientHeight) {
 						height = this.$refs.gridOuter.clientHeight;
 					} else if (parent) {
-						scale = mediaList.filter(media => previewable(media)).length;
+						scale = mediaList.length;
 						height = parent.getBoundingClientRect().width * 45 / 64 * (scale + ((scale + 1) % 3) - 1);
 					}
 
-					this.gridOuterStyle = { height: `${height}px` };
+					this.gridOuterStyle = { height: `${scale}px` };
 				} else {
 					this.gridOuterStyle = {};
 				}
@@ -93,6 +93,7 @@ export default defineComponent({
 		&:before {
 			content: '';
 			display: block;
+			padding-top: 140.625%;
 		}
 
 		> div {
