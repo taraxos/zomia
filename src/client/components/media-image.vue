@@ -121,7 +121,7 @@ export default defineComponent({
 
 .gqnyydlz {
 	position: relative;
-	border: solid 0.5px var(--divider);
+	border: solid 0 var(--divider);
 
 	> i {
 		display: block;
