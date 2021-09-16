@@ -37,6 +37,35 @@ export default defineComponent({
 		previewable(file) {
 			return file.type.startsWith('video') || file.type.startsWith('image');
 		},
+<<<<<<< HEAD
+=======
+		size() {
+			// for Safari bug
+			if (this.sizeWaiting) return;
+
+			this.sizeWaiting = true;
+
+			window.requestAnimationFrame(() => {
+				this.sizeWaiting = false;
+
+				if (this.$refs.gridOuter) {
+					let height = 720;
+					const parent = this.$parent.$el;
+
+					if (this.$refs.gridOuter.clientHeight) {
+						height = this.$refs.gridOuter.clientHeight;
+					} else if (parent) {
+						let scale = mediaList.filter(media => previewable(media)).length;
+						height = parent.getBoundingClientRect().width * 45 / 64 * (scale + ((scale + 1) % 3) - 1);
+					}
+
+					this.gridOuterStyle = { height: `${height}px` };
+				} else {
+					this.gridOuterStyle = {};
+				}
+			});
+		}
+>>>>>>> parent of dad787df1 (Update media-list.vue)
 	},
 });
 </script>
