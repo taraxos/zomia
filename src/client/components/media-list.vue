@@ -88,6 +88,12 @@ export default defineComponent({
 		position: relative;
 		width: 100%;
 		margin: 0;
+		
+		&:before {
+			content: '';
+			display: block;
+			padding-top: 140.625% // 45:32;
+		}
 
 		> div {
 			position: absolute;
