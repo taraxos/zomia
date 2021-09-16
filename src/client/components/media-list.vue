@@ -1,8 +1,8 @@
 <template>
 <div class="mk-media-list">
 	<XBanner v-for="media in mediaList.filter(media => !previewable(media))" :media="media" :key="media.id"/>
-	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="grid-container" ref="gridOuter" :style="gridOuterStyle">
-		<div :data-count="mediaList.filter(media => previewable(media)).length">
+	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="grid-container" ref="gridOuter">
+		<div :data-count="mediaList.filter(media => previewable(media)).length" :style="gridInnerStyle">
 			<template v-for="media in mediaList">
 				<XVideo :video="media" :key="media.id" v-if="media.type.startsWith('video')"/>
 				<XImage :image="media" :key="media.id" v-else-if="media.type.startsWith('image')" :raw="raw"/>
@@ -35,7 +35,7 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			gridOuterStyle: {},
+			gridInnerStyle: {},
 			sizeWaiting: false
 		}
 	},
@@ -73,9 +73,9 @@ export default defineComponent({
 						height = parent.getBoundingClientRect().width * 45 / 64 * (scale + ((scale + 1) % 3) - 1);
 					}
 
-					this.gridOuterStyle = { height: `${height}px` };
+					this.gridInnerStyle = { height: `${height}px` };
 				} else {
-					this.gridOuterStyle = {};
+					this.gridInnerStyle = {};
 				}
 			});
 		}
@@ -89,6 +89,12 @@ export default defineComponent({
 		position: relative;
 		width: 100%;
 		margin: 0;
+		
+		&:before {
+			content: '';
+			display: block;
+			padding-top: 140.625% // 45:32;
+		}
 
 		> div {
 			position: absolute;
