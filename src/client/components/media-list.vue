@@ -69,7 +69,8 @@ export default defineComponent({
 					if (this.$refs.gridOuter.clientHeight) {
 						height = this.$refs.gridOuter.clientHeight;
 					} else if (parent) {
-						height = parent.getBoundingClientRect().width * 45 / 64;
+						scale = mediaList.filter(media => previewable(media)).length
+						height = parent.getBoundingClientRect().width * 45 / 64 * (scale + ((scale + 1) % 3) - 1);
 					}
 
 					this.gridInnerStyle = { height: `${height}px` };
