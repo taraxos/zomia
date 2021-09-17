@@ -29,7 +29,7 @@ const colors = [
 /**
  * Generate buffer of random avatar by seed
  */
-export function genAvatar(stream: WriteStream): Promise<void> {
+export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	const rand = gen.create(seed);
 	
 	// throw the dice for body parts
