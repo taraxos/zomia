@@ -39,14 +39,14 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 		['eyes', rand(15)],
 		['mouth', rand(10)]
 	];
-	
+
 	const canvas = p.make(256, 256);
 	const ctx = canvas.getcontext('2d');
 
 	ctx.fillStyle = colors[rand(colors.length)];
 
 	// add parts
-	for (let part of parts) {
+	for (const part of parts) {
 		p.decodePNGFromStream(fs.createReadStream('img/'+part[0]+'_'+String(part[1])+'.png')).then((png) => {
 			ctx.drawImage(png, 0, 0);
 		});
