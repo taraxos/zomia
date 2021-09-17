@@ -9,7 +9,7 @@ import { WriteStream } from 'fs';
 
 const colors = [
 	"#e57373",
-	"#e06292",
+	"#f06292",
 	"#ba68c8",
 	"#9575cd",
 	"#7986cb",
