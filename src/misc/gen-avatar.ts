@@ -9,27 +9,26 @@ import { WriteStream } from 'fs';
 const size = 256; // px
 const n = 5; // resolution
 const margin = (size / n);
-
 const colors = [
 	'#e57373',
-	'#f06292',
-	'#ba68c8',
-	'#9575cd',
-	'#7986cb',
-	'#64b5f6',
-	'#4fc3f7',
-	'#4dd0e1',
-	'#4db6ac',
-	'#81c784',
-	'#8bc34a',
-	'#afb42b',
-	'#f57f17',
-	'#ff5722',
+	'#F06292',
+	'#BA68C8',
+	'#9575CD',
+	'#7986CB',
+	'#64B5F6',
+	'#4FC3F7',
+	'#4DD0E1',
+	'#4DB6AC',
+	'#81C784',
+	'#8BC34A',
+	'#AFB42B',
+	'#F57F17',
+	'#FF5722',
 	'#795548',
-	'#455a64'
+	'#455A64',
 ];
-
 const bg = '#e9e9e9';
+
 const actualSize = size - (margin * 2);
 const cellSize = actualSize / n;
 const sideN = Math.floor(n / 2);
@@ -39,20 +38,10 @@ const sideN = Math.floor(n / 2);
  */
 export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	const rand = gen.create(seed);
-
-	// throw the dice for body parts
-	const parts = [
-		['body', rand(15)],
-		['fur', rand(10)],
-		['eyes', rand(15)],
-		['mouth', rand(10)]
-	];
-
 	const canvas = p.make(size, size);
-	const ctx = canvas.getcontext('2d');
+	const ctx = canvas.getContext('2d');
 
 	ctx.fillStyle = bg;
-	
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
 
