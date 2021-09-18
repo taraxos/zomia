@@ -49,9 +49,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	ctx.fillRect(0, 0, size, size);
 	
 	p.decodePNGFromStream(fs.createReadStream('img/body_1.png')).then((img) => {
-		ctx.drawImage(img,
-			0, 0, 256, 256
-		);
+		ctx.drawImage(img, 0, 0, 256, 256);
 	});
 
 	// add parts
