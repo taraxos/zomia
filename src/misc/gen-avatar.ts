@@ -4,7 +4,6 @@
 
 import * as p from 'pureimage';
 import * as gen from 'random-seed';
-import * as fs from 'fs';
 import { WriteStream } from 'fs';
 
 const colors = [
