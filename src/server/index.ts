@@ -24,6 +24,7 @@ import { program } from '../argv';
 import { UserProfiles, Users } from '@/models/index';
 import { networkChart } from '@/services/chart/index';
 import { genAvatar } from '@/misc/gen-avatar';
+import { createTemp } from '@/misc/create-temp';
 import { publishMainStream } from '@/services/stream';
 
 export const serverLogger = new Logger('server', 'gray', false);
@@ -67,10 +68,11 @@ router.use(activityPub.routes());
 router.use(nodeinfo.routes());
 router.use(wellKnown.routes());
 
-router.get('/avatar/:x', ctx => {
-	const avatar = genAvatar(ctx.params.x);
+router.get('/avatar/:x', async ctx => {
+	const [temp] = await createTemp();
+	await genAvatar(ctx.params.x, fs.createWriteStream(temp));
 	ctx.set('Content-Type', 'image/png');
-	ctx.body = avatar;
+	ctx.body = fs.createReadStream(temp);
 });
 
 router.get('/verify-email/:code', async ctx => {
