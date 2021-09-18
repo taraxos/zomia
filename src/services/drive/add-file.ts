@@ -219,11 +219,11 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 
 	try {
 		if (['image/jpeg', 'image/webp'].includes(type)) {
-			thumbnail = await convertSharpToJpeg(img, 1024, 720);
+			thumbnail = await convertSharpToJpeg(img, 640, 912);
 		} else if (['image/png'].includes(type)) {
-			thumbnail = await convertSharpToPngOrJpeg(img, 1024, 720);
+			thumbnail = await convertSharpToPngOrJpeg(img, 640, 912);
 		} else {
-			logger.debug(`thumbnail not created (not an required file)`);
+			logger.debug(`thumbnail not created (not a required file)`);
 		}
 	} catch (e) {
 		logger.warn(`thumbnail not created (an error occured)`, e);
