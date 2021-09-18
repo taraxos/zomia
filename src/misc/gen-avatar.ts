@@ -32,6 +32,8 @@ const colors = [
  */
 export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	const rand = gen.create(seed);
+	const canvas = p.make(size, size);
+	const ctx = canvas.getContext('2d');
 
 	// throw the dice for body parts
 	const parts = [
@@ -41,28 +43,17 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 		['mouth', rand(10)]
 	];
 
-	const canvas = p.make(size, size);
-	const ctx = canvas.getContext('2d');
-
 	ctx.fillStyle = colors[rand(colors.length)];
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
-	
-	p.decodePNGFromStream(fs.createReadStream('img/body_1.png')).then((img) => {
-		ctx.drawImage(img, 0, 0, 256, 256);
-	});
 
 	// add parts
-	/*
 	for (let part of parts) {
-		p.decodePNGFromStream(fs.createReadStream('/img/'+part[0]+'_'+String(part[1])+'.png')).then((img) => {
-			ctx.drawImage(img,
-				0, 0, 256, 256,
-				0, 0, size, size
-			);
+		let url = 'img/'+part[0]+'_'+String(part[1])+'.png';
+		p.decodePNGFromStream(fs.createReadStream(url)).then((img) => {
+			ctx.drawImage(img, 0, 0, size, size);
 		});
 	}
- */
 
 	return p.encodePNGToStream(canvas, stream);
 }
