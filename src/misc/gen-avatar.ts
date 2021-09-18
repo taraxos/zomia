@@ -7,6 +7,7 @@ import * as gen from 'random-seed';
 import * as fs from 'fs';
 import { WriteStream } from 'fs';
 
+const size = 256; // px
 const colors = [
 	'#e57373',
 	'#f06292',
@@ -40,10 +41,12 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 		['mouth', rand(10)]
 	];
 
-	const canvas = p.make(256, 256);
+	const canvas = p.make(size, size);
 	const ctx = canvas.getContext('2d');
 
 	ctx.fillStyle = colors[rand(colors.length)];
+	ctx.beginPath();
+	ctx.fillRect(0, 0, size, size);
 
 	// add parts
 	for (const part of parts) {
