@@ -63,14 +63,14 @@ export default defineComponent({
 				this.sizeWaiting = false;
 
 				if (this.$refs.gridOuter) {
-					let height = 720;
+					let height = 360;
 					const parent = this.$parent.$el;
 
 					if (this.$refs.gridOuter.clientHeight) {
 						height = this.$refs.gridOuter.clientHeight;
 					} else if (parent) {
 						let scale = this.mediaList.length;
-						height = parent.getBoundingClientRect().width * 45 / 64 * (scale + ((scale + 1) % 3) - 1);
+						height = parent.getBoundingClientRect().width * 45 / 64 * (((2 * scale + 1) / 3) | 0);
 					}
 
 					this.gridOuterStyle = { height: `${height}px` };
@@ -115,27 +115,27 @@ export default defineComponent({
 
 			&[data-count="3"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 2fr 1fr;
+				grid-template-rows: 1fr 1fr;
 
 				> *:nth-child(1) {
-					grid-column: 1 / 3;
+					grid-column: 1 / 2;
 					grid-row: 1 / 2;
 				}
 
 				> *:nth-child(2) {
-					grid-column: 1 / 2;
-					grid-row: 2 / 3;
+					grid-column: 2 / 3;
+					grid-row: 1 / 2;
 				}
 
 				> *:nth-child(3) {
-					grid-column: 2 / 3;
+					grid-column: 1 / 3;
 					grid-row: 2 / 3;
 				}
 			}
 
 			&[data-count="4"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 2fr 1fr 2fr;
+				grid-template-rows: 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 3;
@@ -160,7 +160,7 @@ export default defineComponent({
 
 			&[data-count="5"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr 2fr 1fr;
+				grid-template-rows: 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 2;
@@ -190,7 +190,7 @@ export default defineComponent({
 
 			&[data-count="6"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 2fr 1fr 1fr 2fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 3;
@@ -225,7 +225,7 @@ export default defineComponent({
 
 			&[data-count="7"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 2fr 1fr 2fr 1fr 2fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 3;
@@ -265,7 +265,7 @@ export default defineComponent({
 
 			&[data-count="8"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr 2fr 1fr 2fr 1fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 2;
@@ -310,7 +310,7 @@ export default defineComponent({
 
 			&[data-count="9"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 2fr 1fr 2fr 1fr 2fr 1fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 3;
@@ -360,7 +360,7 @@ export default defineComponent({
 
 			&[data-count="10"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 2fr 1fr 2fr 1fr 2fr 1fr 2fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 3;
@@ -415,7 +415,7 @@ export default defineComponent({
 
 			&[data-count="11"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr 2fr 1fr 2fr 1fr 2fr 1fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 2;
@@ -475,7 +475,7 @@ export default defineComponent({
 
 			&[data-count="12"] {
 				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 2fr 1fr 2fr 1fr 1fr 2fr 1fr 2fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 				> *:nth-child(1) {
 					grid-column: 1 / 3;
