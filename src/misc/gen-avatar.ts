@@ -47,8 +47,16 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	ctx.fillStyle = colors[rand(colors.length)];
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
+	
+	p.decodePNGFromStream(fs.createReadStream('img/body_1.png')).then((img) => {
+		ctx.drawImage(img,
+			0, 0, 256, 256,
+			0, 0, size, size
+		);
+	});
 
 	// add parts
+	/*
 	for (let part of parts) {
 		p.decodePNGFromStream(fs.createReadStream('/img/'+part[0]+'_'+String(part[1])+'.png')).then((img) => {
 			ctx.drawImage(img,
@@ -57,6 +65,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 			);
 		});
 	}
+ */
 
 	return p.encodePNGToStream(canvas, stream);
 }
