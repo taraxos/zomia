@@ -50,7 +50,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 
 	// add parts
 	for (let part of parts) {
-		p.decodePNGFromStream(fs.createReadStream('./misc/img/'+part[0]+'_'+String(part[1])+'.png')).then((img) => {
+		p.decodePNGFromStream(fs.createReadStream('misc/img/'+part[0]+'_'+String(part[1])+'.png')).then((img) => {
 			ctx.drawImage(img,
 				0, 0, 256, 256
 			);
