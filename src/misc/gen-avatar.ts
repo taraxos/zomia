@@ -24,6 +24,7 @@ const colors = [
 	'#795548',
 	'#455a64'
 ];
+const bg = '#e9e9e9';
 
 /**
  * Generate buffer of random avatar by seed
@@ -42,7 +43,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	const canvas = p.make(256, 256);
 	const ctx = canvas.getcontext('2d');
 
-	ctx.fillStyle = colors[rand(colors.length)];
+	ctx.fillStyle = bg;
 
 	return p.encodePNGToStream(canvas, stream);
 }
