@@ -13,7 +13,7 @@ import { WriteStream } from 'fs';
 const _filename = __filename;
 const _dirname = dirname(_filename);
 
-const imgurl = `${_dirname}/img/body_1.png`
+//const imgurl = `${_dirname}/img/body_1.png`
 
 const size = 256; // px
 const colors = [
@@ -39,6 +39,7 @@ const colors = [
  * Generate buffer of random avatar by seed
  */
 export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
+	/*
 	const rand = gen.create(seed);
 	const canvas = p.make(size, size);
 	const ctx = canvas.getContext('2d');
@@ -54,9 +55,19 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	ctx.fillStyle = colors[rand(colors.length)];
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
+	*/
 	
-	p.decodePNGFromStream(fs.createReadStream(imgurl)).then((img) => {
-		ctx.drawImage(img, 0, 0, size, size);
+	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((canvas) => {
+		let ctx = canvas.getContext('2d');
+		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/fur_2.png`)).then((layer2) => {
+			ctx.drawImage(layer2, 0, 0);
+			p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/eyes_3.png`)).then((layer3) => {
+				ctx.drawImage(layer3, 0, 0);
+				p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/mouth_4.png`)).then((layer4) => {
+					ctx.drawImage(layer4, 0, 0);
+				});
+			});
+		});
 	});
 
 	/*
