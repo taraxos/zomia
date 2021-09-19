@@ -40,10 +40,10 @@ const colors = [
  */
 export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	const rand = gen.create(seed);
-	/*
 	const canvas = p.make(size, size);
 	const ctx = canvas.getContext('2d');
 
+	/*
 	// throw the dice for body parts
 	const parts = [
 		['body', rand(15)],
@@ -51,17 +51,13 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 		['eyes', rand(15)],
 		['mouth', rand(10)]
 	];
+	*/
 
 	ctx.fillStyle = colors[rand(colors.length)];
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
-	*/
 	
 	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((layer1) => {
-		var canvas = p.make(size, size);
-		var ctx = canvas.getContext('2d');
-		ctx.fillStyle = colors[rand(colors.length)];
-		ctx.fillRect(0, 0, size, size);
 		ctx.drawImage(layer1, 0, 0, size, size);
 		/*
 		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/fur_2.png`)).then((layer2) => {
@@ -75,7 +71,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 			});
 		});
 		*/
-		done();
+		p.encodePNGToStream(canvas, stream);
 	});
 
 	/*
