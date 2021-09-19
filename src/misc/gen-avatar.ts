@@ -59,18 +59,18 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 
 	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((layer1) => {
 		ctx.drawImage(layer1, 0, 0, size, size);
-		/*
 		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/fur_2.png`)).then((layer2) => {
 			ctx.drawImage(layer2, 0, 0, size, size);
 			p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/eyes_3.png`)).then((layer3) => {
 				ctx.drawImage(layer3, 0, 0, size, size);
 				p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/mouth_4.png`)).then((layer4) => {
 					ctx.drawImage(layer4, 0, 0, size, size);
-					done();
+					p.encodePNGToStream(canvas, fs.createWriteStream(`${_dirname}/../../files/avatar.png`)).then(() => {
+						console.log('done');
+					});
 				});
 			});
 		});
-		*/
 	})
 
 	/*
