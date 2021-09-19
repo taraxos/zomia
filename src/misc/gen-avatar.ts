@@ -53,11 +53,11 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	];
 	*/
 
-	ctx.fillStyle = colors[rand(colors.length)];
+	ctx.fillStyle = rgba(255, 255, 255, 0.5);
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
 	
-	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((layer1) => {
+	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/../server/file/assets/dummy.png`)).then((layer1) => {
 		ctx.drawImage(layer1, 0, 0, size, size);
 		/*
 		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/fur_2.png`)).then((layer2) => {
