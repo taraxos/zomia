@@ -71,7 +71,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 			});
 		});
 		*/
-		p.encodePNGToStream(canvas, stream);
+		p.encodePNGToStream(canvas, stream).then(done);
 	});
 
 	/*
