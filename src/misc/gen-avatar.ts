@@ -3,7 +3,7 @@
  */
 
 import * as p from 'pureimage';
-import * as gen from 'random-seed';
+//import * as gen from 'random-seed';
 import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -16,6 +16,7 @@ const _dirname = dirname(_filename);
 //const imgurl = `${_dirname}/img/body_1.png`
 
 const size = 256; // px
+/*
 const colors = [
 	'#e57373',
 	'#f06292',
@@ -34,6 +35,7 @@ const colors = [
 	'#795548',
 	'#455a64'
 ];
+*/
 
 /**
  * Generate buffer of random avatar by seed
@@ -57,14 +59,17 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	ctx.fillRect(0, 0, size, size);
 	*/
 	
-	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((canvas) => {
-		let ctx = canvas.getContext('2d');
+	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((layer1) => {
+		const canvas = p.make(size, size);
+		const ctx = canvas.getContext('2d');
+		ctx.drawImage(layer1, 0, 0, size, size);
 		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/fur_2.png`)).then((layer2) => {
-			ctx.drawImage(layer2, 0, 0);
+			ctx.drawImage(layer2, 0, 0, size, size);
 			p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/eyes_3.png`)).then((layer3) => {
-				ctx.drawImage(layer3, 0, 0);
+				ctx.drawImage(layer3, 0, 0, size, size);
 				p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/mouth_4.png`)).then((layer4) => {
-					ctx.drawImage(layer4, 0, 0);
+					ctx.drawImage(layer4, 0, 0, size, size);
+					done();
 				});
 			});
 		});
