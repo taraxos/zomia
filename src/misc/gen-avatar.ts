@@ -13,6 +13,8 @@ import { WriteStream } from 'fs';
 const _filename = __filename;
 const _dirname = dirname(_filename);
 
+const imgurl = `${_dirname}/img/body_1.png`
+
 const size = 256; // px
 const colors = [
 	'#e57373',
@@ -53,7 +55,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
 	
-	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((img) => {
+	p.decodePNGFromStream(fs.createReadStream(imgurl)).then((img) => {
 		ctx.drawImage(img, 0, 0, size, size);
 	});
 
