@@ -53,7 +53,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	];
 	*/
 
-	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+	ctx.fillStyle = rgba(255, 255, 255, 0.5);
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
 	
