@@ -58,8 +58,8 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	*/
 	
 	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((layer1) => {
-		const canvas = p.make(size, size);
-		const ctx = canvas.getContext('2d');
+		var canvas = p.make(size, size);
+		var ctx = canvas.getContext('2d');
 		ctx.fillStyle = colors[rand(colors.length)];
 		ctx.beginPath();
 		ctx.fillRect(0, 0, size, size);
