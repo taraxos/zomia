@@ -71,8 +71,8 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 			});
 		});
 		*/
-		p.encodePNGToStream(canvas, stream).then(done);
-	});
+		return p.encodePNGToStream(canvas, stream);
+	})
 
 	/*
 	// add parts
@@ -84,5 +84,5 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	}
 	*/
 
-	return p.encodePNGToStream(canvas, stream);
+	// return p.encodePNGToStream(canvas, stream);
 }
