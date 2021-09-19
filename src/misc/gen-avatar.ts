@@ -61,9 +61,9 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 		var canvas = p.make(size, size);
 		var ctx = canvas.getContext('2d');
 		ctx.fillStyle = colors[rand(colors.length)];
-		ctx.beginPath();
 		ctx.fillRect(0, 0, size, size);
 		ctx.drawImage(layer1, 0, 0, size, size);
+		/*
 		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/fur_2.png`)).then((layer2) => {
 			ctx.drawImage(layer2, 0, 0, size, size);
 			p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/eyes_3.png`)).then((layer3) => {
@@ -74,6 +74,8 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 				});
 			});
 		});
+		*/
+		done();
 	});
 
 	/*
