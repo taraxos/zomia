@@ -68,7 +68,7 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 				ctx.drawImage(layer3, 0, 0, size, size);
 				p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/mouth_4.png`)).then((layer4) => {
 					ctx.drawImage(layer4, 0, 0, size, size);
-					p.encodePNGToStream(canvas, passThroughStream).then(done);
+					p.encodePNGToStream(layer1, passThroughStream).then(done);
 				});
 			});
 		});
