@@ -16,8 +16,6 @@ const _dirname = dirname(_filename);
 
 const passThroughStream = new PassThrough();
 
-//const imgurl = `${_dirname}/img/body_1.png`
-
 const size = 256; // px
 const colors = [
 	'#e57373',
@@ -46,43 +44,14 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	const canvas = p.make(size, size);
 	const ctx = canvas.getContext('2d');
 
-	/*
-	// throw the dice for body parts
-	const parts = [
-		['body', rand(15)],
-		['fur', rand(10)],
-		['eyes', rand(15)],
-		['mouth', rand(10)]
-	];
-	*/
-
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
 
-	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/body_1.png`)).then((layer1) => {
-		ctx.drawImage(layer1, 0, 0, size, size);
-		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/fur_2.png`)).then((layer2) => {
-			ctx.drawImage(layer2, 0, 0, size, size);
-			p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/eyes_3.png`)).then((layer3) => {
-				ctx.drawImage(layer3, 0, 0, size, size);
-				p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/mouth_4.png`)).then((layer4) => {
-					ctx.drawImage(layer4, 0, 0, size, size);
-					p.encodePNGToStream(layer1, passThroughStream).then(done);
-				});
-			});
-		});
+	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img.png`)).then((img) => {
+		ctx.drawImage(img, 0, 0, size, size);
+		p.encodePNGToStream(img, passThroughStream).then(done);
 	})
-
-	/*
-	// add parts
-	for (let part of parts) {
-		let imgurl = 'img/'+part[0]+'_'+String(part[1])+'.png';
-		p.decodePNGFromStream(fs.createReadStream(`${_dirname}/imgurl`)).then((img) => {
-			ctx.drawImage(img, 0, 0, size, size);
-		});
-	}
-	*/
 
 	return p.encodePNGToStream(canvas, stream);
 }
