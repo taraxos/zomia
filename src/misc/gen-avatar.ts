@@ -5,13 +5,16 @@
 import * as p from 'pureimage';
 import * as gen from 'random-seed';
 import * as fs from 'fs';
+import { WriteStream } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { WriteStream } from 'fs';
+import { PassThrough } from 'stream';
 
 //const _filename = fileURLToPath(import.meta.url);
 const _filename = __filename;
 const _dirname = dirname(_filename);
+
+const passThroughStream = new PassThrough();
 
 //const imgurl = `${_dirname}/img/body_1.png`
 
@@ -65,13 +68,11 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 				ctx.drawImage(layer3, 0, 0, size, size);
 				p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img/mouth_4.png`)).then((layer4) => {
 					ctx.drawImage(layer4, 0, 0, size, size);
-					console.log('done');
+					p.encodePNGToStream(canvas, passThroughStream).then(done);
 				});
 			});
 		});
 	})
-	
-	ctx.drawImage(layer1, 0, 0, size, size);
 
 	/*
 	// add parts
