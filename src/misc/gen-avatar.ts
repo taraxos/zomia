@@ -48,10 +48,8 @@ export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
 	ctx.beginPath();
 	ctx.fillRect(0, 0, size, size);
 
-	p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img.png`)).then((img) => {
-		ctx.drawImage(img, 0, 0, size, size);
-		p.encodePNGToStream(img, passThroughStream).then(done);
-	})
+	const img = p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img.png`));
+	ctx.drawImage(img, 0, 0, size, size);
 
 	return p.encodePNGToStream(canvas, stream);
 }
