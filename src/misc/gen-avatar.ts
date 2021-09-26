@@ -5,7 +5,6 @@
 import * as p from 'pureimage';
 import * as gen from 'random-seed';
 import * as fs from 'fs';
-import { WriteStream } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { PassThrough } from 'stream';
@@ -39,17 +38,17 @@ const colors = [
 /**
  * Generate buffer of random avatar by seed
  */
-export function genAvatar(seed: string, stream: WriteStream): Promise<void> {
+export async function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
 	const rand = gen.create(seed);
 	const canvas = p.make(size, size);
 	const ctx = canvas.getContext('2d');
 
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
 	ctx.fillRect(0, 0, size, size);
-
-	const img = p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img.png`));
 	
-	ctx.drawImage(img, 0, 0, size, size);
+	await p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img.png`)).then((img) => {
+		ctx.drawImage(img, 0, 0, size, size);
+	})
 
 	return p.encodePNGToStream(canvas, stream);
 }
