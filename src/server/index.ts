@@ -68,11 +68,10 @@ router.use(activityPub.routes());
 router.use(nodeinfo.routes());
 router.use(wellKnown.routes());
 
-router.get('/avatar/:x', async ctx => {
-	const [temp] = await createTemp();
-	await genAvatar(ctx.params.x, fs.createWriteStream(temp));
+router.get('/avatar/:x', ctx => {
+	const avatar = genAvatar(ctx.params.x);
 	ctx.set('Content-Type', 'image/png');
-	ctx.body = fs.createReadStream(temp);
+	ctx.body = avatar;
 });
 
 router.get('/verify-email/:code', async ctx => {
