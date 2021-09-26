@@ -35,6 +35,8 @@ const colors = [
 	'#455a64'
 ];
 
+const img = p.decodePNGFromStream(fs.createReadStream('img.png'));
+
 /**
  * Generate buffer of random avatar by seed
  */
@@ -46,9 +48,7 @@ export function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
 	ctx.fillRect(0, 0, size, size);
 	
-	p.decodePNGFromStream(fs.createReadStream('img.png')).then((img) => {
-		ctx.drawImage(img, 0, 0, size, size);
-	})
+	ctx.drawImage(img, 0, 0, size, size);
 
 	return p.encodePNGToStream(canvas, stream);
 }
