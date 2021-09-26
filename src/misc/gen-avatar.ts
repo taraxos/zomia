@@ -38,7 +38,7 @@ const colors = [
 /**
  * Generate buffer of random avatar by seed
  */
-export async function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
+export function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
 	const rand = gen.create(seed);
 	const canvas = p.make(size, size);
 	const ctx = canvas.getContext('2d');
@@ -46,7 +46,7 @@ export async function genAvatar(seed: string, stream: fs.WriteStream): Promise<v
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
 	ctx.fillRect(0, 0, size, size);
 	
-	await p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img.png`)).then((img) => {
+	p.decodePNGFromStream(fs.createReadStream('img.png')).then((img) => {
 		ctx.drawImage(img, 0, 0, size, size);
 	})
 
