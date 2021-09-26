@@ -35,7 +35,7 @@ const colors = [
 	'#455a64'
 ];
 
-const img = p.decodePNGFromStream(fs.createReadStream('img.png'));
+const img = await p.decodePNGFromStream(fs.createReadStream('img.png'));
 
 /**
  * Generate buffer of random avatar by seed
