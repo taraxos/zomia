@@ -2,9 +2,8 @@
  * Random avatar generator
  */
 
-import * as p from 'pureimage';
+import * as c from 'canvas';
 import * as gen from 'random-seed';
-import * as fs from 'fs';
 
 const size = 256; // px
 const colors = [
@@ -29,17 +28,13 @@ const colors = [
 /**
  * Generate buffer of random avatar by seed
  */
-export function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
+export function genAvatar(seed: string) {
 	const rand = gen.create(seed);
-	const canvas = p.make(size, size);
+	const canvas = c.createCanvas(size, size);
 	const ctx = canvas.getContext('2d');
 
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
 	ctx.fillRect(0, 0, size, size);
-	
-	p.decodePNGFromStream(fs.createReadStream(`${__dirname}/img.png`)).then((img) => {
-		ctx.drawImage(img, 0, 0, size, size);
-	});
 
-	return p.encodePNGToStream(canvas, stream);
+	return canvas.toBuffer();
 }
