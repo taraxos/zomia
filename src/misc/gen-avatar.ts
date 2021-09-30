@@ -5,6 +5,7 @@
 import * as p from 'pureimage';
 import * as gen from 'random-seed';
 import * as fs from 'fs';
+import * as path from 'path';
 
 const size = 256; // px
 const colors = [
@@ -37,7 +38,9 @@ export function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
 	ctx.fillRect(0, 0, size, size);
 	
-	p.decodePNGFromStream(fs.createReadStream(`${__dirname}/img.png`)).then((img) => {
+	const imgPath = path.join(__dirname, 'img.png')
+	
+	p.decodePNGFromStream(fs.createReadStream(imgPath)).then((img) => {
 		ctx.drawImage(img, 0, 0, size, size);
 	});
 
