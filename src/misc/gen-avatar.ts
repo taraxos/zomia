@@ -38,9 +38,10 @@ export function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
 	ctx.fillRect(0, 0, size, size);
 	
-	const imgPath = path.join(__dirname, 'img.png')
+	const imgPath = path.join(__dirname, 'img.png');
+	const imgData = fs.createReadStream(imgPath);
 	
-	p.decodePNGFromStream(fs.createReadStream(imgPath)).then((img) => {
+	p.decodePNGFromStream(imgData).then((img) => {
 		ctx.drawImage(img, 0, 0, size, size);
 	});
 
