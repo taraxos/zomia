@@ -5,7 +5,15 @@
 import * as p from 'pureimage';
 import * as gen from 'random-seed';
 import * as fs from 'fs';
-import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { PassThrough } from 'stream';
+
+//const _filename = fileURLToPath(import.meta.url);
+const _filename = __filename;
+const _dirname = dirname(_filename);
+
+const passThroughStream = new PassThrough();
 
 const size = 256; // px
 const colors = [
@@ -41,9 +49,8 @@ export function genAvatar(seed: string, stream: fs.WriteStream): Promise<void> {
 	const imgPath = path.join(__dirname, 'img.png');
 	const imgData = fs.createReadStream(imgPath);
 	
-	p.decodePNGFromStream(imgData).then((img) => {
+	return p.decodePNGFromStream(fs.createReadStream(`${_dirname}/img.png`)).then((img) => {
 		ctx.drawImage(img, 0, 0, size, size);
-	});
-
-	return p.encodePNGToStream(canvas, stream);
+		return p.encodePNGToStream(img, passThroughStream).then(done);
+	})
 }
